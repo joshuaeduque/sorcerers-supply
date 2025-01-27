@@ -45,7 +45,9 @@ chmod +x install.sh
 
 Only development script are provided at the moment.
 
-1. Make sure start script is executable.
+### Start the fullstack server
+
+1. Make sure the start script is executable.
 
 ```bash
 chmod +x dev_start.sh
