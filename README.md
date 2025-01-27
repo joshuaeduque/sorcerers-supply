@@ -15,7 +15,19 @@ TODO
 
 ### Installation
 
-TODO
+```bash
+# Clone the GitHub repository
+git clone https://github.com/joshuaeduque/sorcerers-supply.git sorcerers-supply
+
+# Navigate to the project directory
+cd sorcerers-supply
+
+# Make sure the installation script is executable
+chmod +x install.sh
+
+# Run the installation script
+./install.sh
+```
 
 ## Usage
 
