@@ -43,7 +43,19 @@ chmod +x install.sh
 
 ## Usage
 
-TODO
+Only development script are provided at the moment.
+
+1. Make sure start script is executable.
+
+```bash
+chmod +x dev_start.sh
+```
+
+2. Run the start script.
+
+```bash
+./dev_start.sh
+```
 
 ## License
 
