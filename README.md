@@ -11,21 +11,29 @@ Sorcerer's Supply is a wizard centric ecommerce site 🧙‍♂️.
 
 ## Getting Started
 
-TODO
-
 ### Installation
 
+1. Clone the GitHub repository.
+
 ```bash
-# Clone the GitHub repository
 git clone https://github.com/joshuaeduque/sorcerers-supply.git sorcerers-supply
+```
 
-# Navigate to the project directory
+2. Navigate to the project directory.
+
+```bash
 cd sorcerers-supply
+```
 
-# Make sure the installation script is executable
+3. Make sure the installation script is executable.
+
+```bash
 chmod +x install.sh
+```
 
-# Run the installation script
+4. Run the installation script.
+
+```bash
 ./install.sh
 ```
 
