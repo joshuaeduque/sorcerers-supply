@@ -41,6 +41,23 @@ chmod +x install.sh
 ./install.sh
 ```
 
+### Configuring environment variables
+
+Sorcerer's Supply requires you to configure some environment variables to use Firebase.
+
+1. Create a `.env` file in the root directory of the project.
+
+2. Insert the following into the `.env` file and replace the values with your own.
+
+```bash
+FIREBASE_API_KEY="your_api_key"
+FIREBASE_AUTH_DOMAIN="your_auth_domain"
+FIREBASE_PROJECT_ID="your_project_id"
+FIREBASE_STORAGE_BUCKET="your_storage_bucket"
+FIREBASE_MSG_SENDER_ID="your_message_sender_id"
+FIREBASE_APP_ID="your_app_id"
+```
+
 ## Usage
 
 Only development script are provided at the moment.
