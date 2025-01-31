@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -20,7 +19,6 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-*/
 
 @layer base {
   :root {
