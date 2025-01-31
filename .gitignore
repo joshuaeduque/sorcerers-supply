@@ -1,2 +1,4 @@
 # Ignore environment files
 .env*
+# Ignore Spotlight index files on Mac
+.DS_Store
