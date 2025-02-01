@@ -14,6 +14,7 @@ import {
 import { getProductDocuments } from '@/app/firebase/products';
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { ProductDocumentData } from "@/types/product-document-data";
 
 export default function Home() {
 
@@ -42,9 +43,16 @@ export default function Home() {
         <p>Products</p>
       </div>
       <div className="px-4 flex flex-wrap gap-4">
-        {productDocuments.map((doc, i) => (
-          <ProductCard key={doc.id} name={doc.data().name} price={'$' + (doc.data().cents / 100)}/>
-        ))}
+        {productDocuments.map((doc, i) => {
+          const data = doc.data() as ProductDocumentData;
+          return (
+            <ProductCard
+              key={doc.id}
+              name={data.name}
+              price={'$' + (data.cents / 100)}
+            />
+          );
+        })}
       </div>
     </div>
   );
