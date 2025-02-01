@@ -1,4 +1,19 @@
 # Ignore environment files
 .env*
+
 # Ignore Spotlight index files on Mac
 .DS_Store
+
+# Ignore Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
