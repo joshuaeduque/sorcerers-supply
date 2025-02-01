@@ -11,8 +11,8 @@ export function SiteHeader() {
                 <p>SORCERER'S SUPPLY</p>
             </div>
             <div className="flex items-center gap-4 ml-auto">
-                <div className='flex items-center gap-2'>
-                    <Input placeholder='Search products'></Input>
+                <div className="flex items-center gap-2">
+                    <Input placeholder="Search products"></Input>
                     <Button variant="outline" size="icon">
                         <Search/>
                     </Button>
