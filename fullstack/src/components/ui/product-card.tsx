@@ -6,25 +6,24 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Key } from "react";
 
 interface ProductCardProps {
-    key: Key,
-    name: string,
-    price: string
+    name?: string,
+    price?: string,
+    imageSrc?: string
 }
 
-export function ProductCard(props : ProductCardProps) {
+export function ProductCard({ name = 'Name', price = '$0.00', imageSrc = '/next.svg' }: ProductCardProps) {
     return (
-        <Card className="w-48" key={props.key}>
+        <Card className="w-48">
             <CardHeader></CardHeader>
             <CardContent>
-                <img src="/next.svg" />
+                <img src={imageSrc} />
             </CardContent>
             <CardFooter>
                 <div>
-                    <p>{props.name}</p>
-                    <p className="text-gray-400">{props.price}</p>
+                    <p>{name}</p>
+                    <p className="text-gray-400">{price}</p>
                 </div>
             </CardFooter>
         </Card>
