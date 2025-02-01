@@ -8,7 +8,7 @@ export function SiteHeader() {
         <div className="flex p-4 border-b border-gray-800">
             <div className="flex items-center gap-2">
                 <WandSparkles/>
-                <p>SORCERER'S SUPPLY</p>
+                <p>SORCERER&apos;S SUPPLY</p>
             </div>
             <div className="flex items-center gap-4 ml-auto">
                 <div className="flex items-center gap-2">

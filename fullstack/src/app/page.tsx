@@ -6,8 +6,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
@@ -18,12 +16,15 @@ import { ProductDocumentData } from "@/types/product-document-data";
 
 export default function Home() {
 
+  const [loadingProducts, setLoadingProducts] = useState(false);
   const [productDocuments, setProductDocuments] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[]>([]);
 
   useEffect(() => {
+    setLoadingProducts(true);
     getProductDocuments()
       .then(docs => {
         setProductDocuments(docs);
+        setLoadingProducts(false);
       });
   }, []);
 
@@ -43,7 +44,8 @@ export default function Home() {
         <p>Products</p>
       </div>
       <div className="px-4 flex flex-wrap gap-4">
-        {productDocuments.map((doc, i) => {
+        {loadingProducts && <p>Loading...</p>}
+        {!loadingProducts && productDocuments.map((doc) => {
           const data = doc.data() as ProductDocumentData;
           return (
             <ProductCard
