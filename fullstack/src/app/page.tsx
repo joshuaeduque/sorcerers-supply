@@ -1,6 +1,15 @@
 "use client";
 
 import { SiteHeader } from "@/components/ui/site-header";
+import { ProductCard } from "@/components/ui/product-card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 import { getProductDocuments } from '@/app/firebase/products';
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
@@ -20,11 +29,22 @@ export default function Home() {
   return (
     <div>
       <SiteHeader />
-      <div className="p-4">
-
+      <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
+        <DropdownMenu>
+          <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
+          <DropdownMenuContent className="dark">
+            <DropdownMenuItem>Price: Low to High</DropdownMenuItem>
+            <DropdownMenuItem>Price: High to Low</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
-      <div>
-
+      <div className="px-4 py-2">
+        <p>Products</p>
+      </div>
+      <div className="px-4 flex flex-wrap gap-4">
+        {productDocuments.map((doc, i) => (
+          <ProductCard key={doc.id} name={doc.data().name} price={'$' + (doc.data().cents / 100)}/>
+        ))}
       </div>
     </div>
   );

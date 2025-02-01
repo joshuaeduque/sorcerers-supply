@@ -7,7 +7,8 @@ const appOptions : FirebaseOptions = {
     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MSG_SENDER_ID,
     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 const app : FirebaseApp = initializeApp(appOptions);
