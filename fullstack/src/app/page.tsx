@@ -1,48 +1,60 @@
-'use client';
+"use client";
 
-import { db } from '@/app/firebase/config';
-import { LoadingSpinner } from '@/components/ui/spinner'
+import { SiteHeader } from "@/components/ui/site-header";
+import { ProductCard } from "@/components/ui/product-card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
-import { useEffect, useState } from 'react';
-import { collection, DocumentData, getDocs, query, QueryDocumentSnapshot } from 'firebase/firestore';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { getProductDocuments } from '@/app/firebase/products';
+import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { ProductDocumentData } from "@/types/product-document-data";
 
 export default function Home() {
+
+  const [loadingProducts, setLoadingProducts] = useState(false);
   const [productDocuments, setProductDocuments] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[]>([]);
 
   useEffect(() => {
-
-    const productsRef = collection(db, 'products');
-    const q = query(productsRef);
-
-    getDocs(q)
-      .then(snapshot => {
-        setProductDocuments(snapshot.docs);
-      })
-      .catch(err => console.log(err))
-
+    setLoadingProducts(true);
+    getProductDocuments()
+      .then(docs => {
+        setProductDocuments(docs);
+        setLoadingProducts(false);
+      });
   }, []);
 
   return (
-    <div className='p-4'>
-      <div className='flex flex-row flex-wrap justify-center items-center gap-4'>
-        {productDocuments.length < 1 && <LoadingSpinner className='size-48'></LoadingSpinner>}
-        {productDocuments.length > 0 &&
-          productDocuments.map(product => (
-            <Card key={product.id} className='dark w-48'>
-              <CardHeader></CardHeader>
-              <CardContent>
-                <img className='rounded' src="/frog.png" alt="" />
-              </CardContent>
-              <CardFooter>
-                <div>
-                  <p>{product.data().name}</p>
-                  <p>${product.data().price / 100}</p>
-                </div>
-              </CardFooter>
-            </Card>
-          ))
-        }
+    <div>
+      <SiteHeader />
+      <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
+        <DropdownMenu>
+          <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
+          <DropdownMenuContent className="dark">
+            <DropdownMenuItem>Price: Low to High</DropdownMenuItem>
+            <DropdownMenuItem>Price: High to Low</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <div className="px-4 py-2">
+        <p>Products</p>
+      </div>
+      <div className="px-4 flex flex-wrap gap-4">
+        {loadingProducts && <p>Loading...</p>}
+        {!loadingProducts && productDocuments.map((doc) => {
+          const data = doc.data() as ProductDocumentData;
+          return (
+            <ProductCard
+              key={doc.id}
+              name={data.name}
+              price={'$' + (data.cents / 100)}
+            />
+          );
+        })}
       </div>
     </div>
   );

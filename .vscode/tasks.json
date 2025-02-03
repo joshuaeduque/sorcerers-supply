@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "fullstack",
+			"problemMatcher": [
+				"$eslint-compact"
+			],
+			"label": "npm: dev - fullstack",
+			"detail": "next dev --turbopack"
+		}
+	]
+}
