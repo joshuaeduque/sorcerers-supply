@@ -1,7 +1,7 @@
 "use client";
 
-import { SiteHeader } from "@/components/ui/site-header";
-import { ProductCard } from "@/components/ui/product-card";
+import { SiteHeader } from "@/components/site-header";
+import { ProductCard } from "@/components/product-card";
 import {
   DropdownMenu,
   DropdownMenuContent,
