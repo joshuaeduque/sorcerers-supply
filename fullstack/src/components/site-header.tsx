@@ -5,7 +5,7 @@ import { ShoppingCart, Search, WandSparkles } from 'lucide-react';
 import { MouseEventHandler } from 'react';
 
 interface SiteHeaderProps {
-    authenticated?: boolean,
+    authenticated?: boolean | null,
     onAuthClicked?: MouseEventHandler<HTMLButtonElement> | undefined
 }
 
@@ -24,7 +24,7 @@ export function SiteHeader({authenticated, onAuthClicked} : SiteHeaderProps) {
                     </Button>
                 </div>
                 <Button onClick={onAuthClicked}>
-                    {authenticated ? 'Sign out' : 'Login'}
+                    {authenticated === null ? '...' : authenticated ? 'Sign out' : 'Log in'}
                 </Button>
                 <Button>
                     <ShoppingCart/> Cart

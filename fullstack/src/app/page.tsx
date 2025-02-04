@@ -17,18 +17,22 @@ import { ProductDocumentData } from "@/types/product-document-data";
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
+import { User } from "firebase/auth";
 
 export default function Home() {
 
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [productDocuments, setProductDocuments] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[]>([]);
 
   useEffect(() => {
 
-    auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        setUserLoggedIn(true);
+        setAuthenticated(true);
+      }
+      else {
+        setAuthenticated(false);
       }
     });
 
@@ -38,11 +42,13 @@ export default function Home() {
         setProductDocuments(docs);
         setLoadingProducts(false);
       });
+
+    return () => { unsubscribe() }
   }, []);
 
   return (
     <div>
-      <SiteHeader authenticated={userLoggedIn} onAuthClicked={()=>{console.log('auth button clicked')}} />
+      <SiteHeader authenticated={authenticated} onAuthClicked={() => { console.log('auth button clicked') }} />
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
         <DropdownMenu>
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
@@ -56,8 +62,7 @@ export default function Home() {
         <p>Products</p>
       </div>
       <div className="px-4 flex flex-wrap gap-4">
-        {loadingProducts && <p>Loading...</p>}
-        {!loadingProducts && productDocuments.map((doc) => {
+        {loadingProducts ? <p>Loading...</p> : productDocuments.map((doc) => {
           const data = doc.data() as ProductDocumentData;
           return (
             <ProductCard
