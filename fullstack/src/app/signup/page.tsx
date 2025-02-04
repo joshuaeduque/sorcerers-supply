@@ -1,23 +1,33 @@
 "use client";
 
-import { SignupForm } from '@/components/signup/signup-form'
+import { SignupForm, SignupData } from '@/components/signup/signup-form'
 
-import { app } from '@/app/firebase/config';
+import { auth } from '@/app/firebase/config';
 
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-
-import { FormEventHandler, useEffect } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Signup() {
 
-  useEffect(() => {
-    const auth = getAuth(app);
-  }, []);
+  const handleSignupSubmit = (data: SignupData) => {
+
+    const email = data.email;
+    const password = data.password;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        // console.log('user cred', userCredential);
+        alert('Signed up successfully');
+      })
+      .catch(error => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
 
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <SignupForm onSignupSubmit={(data)=>{console.log('signup data', data)}} className='dark' />
+        <SignupForm onSignupSubmit={handleSignupSubmit} className='dark' />
       </div>
     </div>
   )

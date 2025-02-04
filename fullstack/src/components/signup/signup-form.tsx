@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 
-import React, { useState } from "react"
+import React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -92,3 +92,5 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
         </div>
     )
 }
+
+export type { SignupData };
