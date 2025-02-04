@@ -9,17 +9,29 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import { auth } from '@/app/firebase/config';
 import { getProductDocuments } from '@/app/firebase/products';
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
+
 import { ProductDocumentData } from "@/types/product-document-data";
+
+import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [productDocuments, setProductDocuments] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[]>([]);
 
   useEffect(() => {
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        setUserLoggedIn(true);
+      }
+    });
+
     setLoadingProducts(true);
     getProductDocuments()
       .then(docs => {
@@ -30,7 +42,7 @@ export default function Home() {
 
   return (
     <div>
-      <SiteHeader />
+      <SiteHeader authenticated={userLoggedIn} onAuthClicked={()=>{console.log('auth button clicked')}} />
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
         <DropdownMenu>
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
