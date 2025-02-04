@@ -1,5 +1,6 @@
 "use client";
 
+import { LoadingSpinner } from '@/components/ui/spinner';
 import { SiteHeader } from "@/components/site-header";
 import { ProductCard } from "@/components/product-card";
 import {
@@ -17,7 +18,6 @@ import { ProductDocumentData } from "@/types/product-document-data";
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
-import { User } from "firebase/auth";
 
 export default function Home() {
 
@@ -26,7 +26,7 @@ export default function Home() {
   const [productDocuments, setProductDocuments] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[]>([]);
 
   useEffect(() => {
-
+    // Get Firebase authentication
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         setAuthenticated(true);
@@ -36,6 +36,7 @@ export default function Home() {
       }
     });
 
+    // Get products from Firestore
     setLoadingProducts(true);
     getProductDocuments()
       .then(docs => {
@@ -62,7 +63,7 @@ export default function Home() {
         <p>Products</p>
       </div>
       <div className="px-4 flex flex-wrap gap-4">
-        {loadingProducts ? <p>Loading...</p> : productDocuments.map((doc) => {
+        {loadingProducts ? <LoadingSpinner/> : productDocuments.map((doc) => {
           const data = doc.data() as ProductDocumentData;
           return (
             <ProductCard
