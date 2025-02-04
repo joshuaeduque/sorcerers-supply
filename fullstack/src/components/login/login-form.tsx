@@ -83,3 +83,5 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
         </div>
     )
 }
+
+export type { LoginData };
