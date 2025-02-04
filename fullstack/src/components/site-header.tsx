@@ -18,15 +18,15 @@ export function SiteHeader({authenticated, onAuthClicked} : SiteHeaderProps) {
             </div>
             <div className="flex items-center gap-4 ml-auto">
                 <div className="flex items-center gap-2">
-                    <Input placeholder="Search products"></Input>
-                    <Button variant="outline" size="icon">
+                    <Input className='dark' placeholder="Search products"></Input>
+                    <Button className='dark' variant="outline" size="icon">
                         <Search/>
                     </Button>
                 </div>
-                <Button onClick={onAuthClicked}>
+                <Button className='dark' onClick={onAuthClicked}>
                     {authenticated === null ? '...' : authenticated ? 'Sign out' : 'Log in'}
                 </Button>
-                <Button>
+                <Button className='dark'>
                     <ShoppingCart/> Cart
                 </Button>
             </div>
