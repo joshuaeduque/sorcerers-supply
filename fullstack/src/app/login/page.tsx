@@ -1,6 +1,6 @@
 'use client';
 
-import { LoginForm, LoginData } from '@/components/Login/login-form'
+import { LoginForm } from '@/components/Login/login-form'
 import { auth } from '@/app/firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import background from '../../assets/background/login.png';
@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { WandSparkles } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation";
+import { LoginData } from '@/types/login';
 
 export default function Login() {
   const { toast } = useToast();
@@ -18,14 +19,12 @@ export default function Login() {
     const password = data.password;
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         toast({
           title: "Login successful",
           variant: "success",
           description: "Welcome back!",
         })
-
-        const user = userCredential.user;
 
         router.push('/');
       })
