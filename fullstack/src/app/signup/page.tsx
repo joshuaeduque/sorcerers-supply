@@ -1,6 +1,6 @@
 "use client";
 
-import { SignupForm, SignupData } from '@/components/signup/signup-form'
+import { SignupForm, SignupData } from '@/components/Signup/signup-form'
 
 import { auth } from '@/app/firebase/config';
 

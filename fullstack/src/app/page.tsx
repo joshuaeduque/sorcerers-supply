@@ -1,8 +1,8 @@
 "use client";
 
 import { LoadingSpinner } from '@/components/ui/spinner';
-import { SiteHeader } from "@/components/site-header";
-import { ProductCard } from "@/components/product-card";
+import { SiteHeader } from "@/components/Header/site-header";
+import { ProductCard } from "@/components/Product/product-card";
 import {
   DropdownMenu,
   DropdownMenuContent,

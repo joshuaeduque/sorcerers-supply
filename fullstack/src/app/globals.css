@@ -14,6 +14,12 @@
   }
 }
 
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -52,6 +58,8 @@ body {
     --accent-foreground: 240 5.9% 10%;
 
     --destructive: 0 84.2% 60.2%;
+
+    --success: 120 84.2% 50%;
 
     --destructive-foreground: 0 0% 98%;
 
@@ -104,6 +112,8 @@ body {
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
+
+    --success: 120 62.8% 30.6%;
 
     --destructive-foreground: 0 0% 98%;
 

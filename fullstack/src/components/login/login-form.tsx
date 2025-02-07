@@ -13,10 +13,7 @@ import {
 
 import { FormEventHandler } from "react"
 
-interface LoginData {
-    email: string,
-    password: string
-}
+import { LoginData } from '@/types/login'
 
 interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {
     onLoginSubmit: (data: LoginData) => void
@@ -38,12 +35,12 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
     };
 
     return (
-        <div className={cn("flex flex-col gap-6", className)} {...props}>
-            <Card>
+        <div className={cn("flex flex-col gap-6 w-full max-w-sm", className)} {...props}>
+            <Card className="bg-black/40 border-[1px] border-white/60">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Login</CardTitle>
-                    <CardDescription>
-                        Enter your email below to login to your account
+                    <CardTitle className="text-2xl text-center">Login</CardTitle>
+                    <CardDescription className="text-center w-full">
+                        Welcome, spellcaster!
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -56,6 +53,7 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
                                     id="email"
                                     type="email"
                                     placeholder="m@example.com"
+                                    className="border-2 border-white/50"
                                     required />
                             </div>
                             <div className="grid gap-2">
@@ -70,6 +68,7 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
                                     name="password"
                                     id="password"
                                     type="password"
+                                    className="border-2 border-white/50"
                                     required />
                             </div>
                             <Button type="submit" className="w-full">Login</Button>
@@ -84,5 +83,3 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
         </div>
     )
 }
-
-export type { LoginData };
