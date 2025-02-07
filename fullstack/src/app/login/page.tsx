@@ -1,14 +1,19 @@
 'use client';
 
-import { LoginForm } from '@/components/Login/login-form'
-import { auth } from '@/app/firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import background from '../../assets/background/login.png';
 import Image from 'next/image';
-import { WandSparkles } from 'lucide-react';
-import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation";
+import { WandSparkles } from 'lucide-react';
+
+import { LoginForm } from '@/components/LoginForm/login-form'
+
+import { useToast } from "@/hooks/use-toast"
+
+import { auth } from '@/app/firebase/config'
+
 import { LoginData } from '@/types/login';
+
+import background from '../../assets/background/login.png';
 
 export default function Login() {
   const { toast } = useToast();

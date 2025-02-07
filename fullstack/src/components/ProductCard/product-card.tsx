@@ -16,7 +16,7 @@ export function ProductCard({ name = 'Name', price = '$0.00', imageSrc = '/next.
         <Card className="w-48">
             <CardHeader></CardHeader>
             <CardContent>
-                <img src={imageSrc} />
+                <img className="invert" src={imageSrc} />
             </CardContent>
             <CardFooter>
                 <div>

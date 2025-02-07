@@ -1,8 +1,8 @@
 "use client";
 
 import { LoadingSpinner } from '@/components/ui/spinner';
-import { SiteHeader } from "@/components/Header/site-header";
-import { ProductCard } from "@/components/Product/product-card";
+import { SiteHeader } from "@/components/SiteHeader/site-header";
+import { ProductCard } from "@/components/ProductCard/product-card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -53,7 +53,7 @@ export default function Home() {
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
         <DropdownMenu>
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
-          <DropdownMenuContent className="dark">
+          <DropdownMenuContent>
             <DropdownMenuItem>Price: Low to High</DropdownMenuItem>
             <DropdownMenuItem>Price: High to Low</DropdownMenuItem>
           </DropdownMenuContent>
