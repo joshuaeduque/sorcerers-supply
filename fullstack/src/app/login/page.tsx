@@ -34,7 +34,7 @@ export default function Login() {
         router.push('/');
       })
       .catch(error => {
-        console.error(error.message);
+        //console.error(error.message);
         toast({
           title: "Login failed",
           variant: "destructive",

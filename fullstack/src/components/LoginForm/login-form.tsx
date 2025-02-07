@@ -36,7 +36,7 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
 
     return (
         <div className={cn("flex flex-col gap-6 w-full max-w-sm", className)} {...props}>
-            <Card className="bg-black/40 border-[1px] border-white/60">
+            <Card className="bg-black/40 border-[1px] border-white/60 dark">
                 <CardHeader>
                     <CardTitle className="text-2xl text-center">Login</CardTitle>
                     <CardDescription className="text-center w-full">

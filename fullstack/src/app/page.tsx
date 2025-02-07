@@ -51,9 +51,9 @@ export default function Home() {
     <div>
       <SiteHeader authenticated={authenticated} onAuthClicked={() => { console.log('auth button clicked') }} />
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
-        <DropdownMenu>
+        <DropdownMenu >
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className='dark'>
             <DropdownMenuItem>Price: Low to High</DropdownMenuItem>
             <DropdownMenuItem>Price: High to Low</DropdownMenuItem>
           </DropdownMenuContent>
