@@ -3,4 +3,4 @@ interface ProductDocumentData {
     cents: number
 }
 
-export type {ProductDocumentData};
+export type { ProductDocumentData };

@@ -2,8 +2,14 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 import { ShoppingCart, Search, WandSparkles } from 'lucide-react';
+import { MouseEventHandler } from 'react';
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+    authenticated?: boolean | null,
+    onAuthClicked?: MouseEventHandler<HTMLButtonElement> | undefined
+}
+
+export function SiteHeader({authenticated, onAuthClicked} : SiteHeaderProps) {
     return (
         <div className="flex p-4 border-b border-gray-800">
             <div className="flex items-center gap-2">
@@ -17,6 +23,9 @@ export function SiteHeader() {
                         <Search/>
                     </Button>
                 </div>
+                <Button onClick={onAuthClicked}>
+                    {authenticated === null ? '...' : authenticated ? 'Sign out' : 'Log in'}
+                </Button>
                 <Button>
                     <ShoppingCart/> Cart
                 </Button>
