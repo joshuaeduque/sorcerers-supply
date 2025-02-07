@@ -56,6 +56,7 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID="your_project_id"
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="your_storage_bucket"
 NEXT_PUBLIC_FIREBASE_MSG_SENDER_ID="your_message_sender_id"
 NEXT_PUBLIC_FIREBASE_APP_ID="your_app_id"
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID="your_measurement_id"
 ```
 
 **Note: These environment variables will be exposed to the browser!**
