@@ -64,12 +64,13 @@ export default function Home() {
       </div>
       <div className="px-4 flex flex-wrap gap-4">
         {loadingProducts ? <LoadingSpinner/> : productDocuments.map((doc) => {
-          const data = doc.data() as ProductDocumentData;
+          const data = doc.data() as QueryDocumentSnapshot<ProductDocumentData>;
           return (
             <ProductCard
-              key={doc.id}
-              name={data.name}
-              price={'$' + (data.cents / 100)}
+            key={doc.id}
+            name={doc.data().name}
+            price={ doc.data().price }
+            imageSrc={ doc.data().imageSrc }
             />
           );
         })}
