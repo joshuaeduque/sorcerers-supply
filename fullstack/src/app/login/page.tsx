@@ -1,6 +1,6 @@
 'use client';
 
-import { LoginForm } from '@/components/Login/login-form'
+import { LoginForm } from '@/components/LoginForm/login-form'
 import { auth } from '@/app/firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import background from '../../assets/background/login.png';

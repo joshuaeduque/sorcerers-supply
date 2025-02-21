@@ -45,20 +45,6 @@ export default function Signup() {
           });
         }
 
-    const email = data.email;
-    const password = data.password;
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        // console.log('user cred', userCredential);
-        alert('Signed up successfully');
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
-  };
-
   return (
     <div className="flex flex-col items-center justify-center gap-5 h-screen overflow-hidden w-full">
 
@@ -69,7 +55,7 @@ export default function Signup() {
       {/* Header */}
       <h1 className='text-3xl font-semibold text-center text-white'> <WandSparkles className='inline mx-2'/>Sorcerer's Supply</h1>
 
-        <SignupForm onSignupSubmit={handleSignupSubmit} className='dark' />
+      <SignupForm onSignupSubmit={handleSignupSubmit} className='dark' />
     </div>
   )
-}
+}}
