@@ -1,6 +1,6 @@
 "use client";
 
-import { SignupForm, SignupData } from '@/components/Signup/signup-form'
+import { SignupForm, SignupData } from '@/components/SignupForm/signup-form'
 
 import { auth } from '@/app/firebase/config';
 import background from '../../assets/background/login.png';
@@ -44,6 +44,7 @@ export default function Signup() {
             description: "Please check your email and password and try again.",
           });
         }
+      }
 
   return (
     <div className="flex flex-col items-center justify-center gap-5 h-screen overflow-hidden w-full">
@@ -58,4 +59,4 @@ export default function Signup() {
       <SignupForm onSignupSubmit={handleSignupSubmit} className='dark' />
     </div>
   )
-}}
+}
