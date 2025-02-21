@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 
+import React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,37 +11,34 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { SignupData } from '@/types/authType'
 
-import { FormEventHandler } from "react"
-
-import { LoginData } from '@/types/authType'
-
-interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {
-    onLoginSubmit: (data: LoginData) => void
+interface SignupFormProps extends React.ComponentPropsWithoutRef<'div'> {
+    onSignupSubmit: (data: SignupData) => void
 }
 
-export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps) {
+export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormProps) {
 
-    const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
 
-        const data: LoginData = {
+        const data : SignupData = {
             email: formData.get('email') as string,
             password: formData.get('password') as string
-        }
+        };
 
-        onLoginSubmit(data);
+        onSignupSubmit(data);
     };
 
     return (
-        <div className={cn("flex flex-col gap-6 w-full max-w-sm", className)} {...props}>
+        <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card className="bg-black/40 border-[1px] border-white/60">
                 <CardHeader>
-                    <CardTitle className="text-2xl text-center">Login</CardTitle>
-                    <CardDescription className="text-center w-full">
-                        Welcome, spellcaster!
+                    <CardTitle className="text-2xl self-center">Sign up</CardTitle>
+                    <CardDescription>
+                        Enter your information below to create your account
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -52,17 +50,13 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
                                     name="email"
                                     id="email"
                                     type="email"
-                                    placeholder="m@example.com"
                                     className="border-2 border-white/50"
+                                    placeholder="m@example.com"
                                     required />
                             </div>
                             <div className="grid gap-2">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
-                                    <a
-                                        href="#"
-                                        className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
-                                        Forgot your password?</a>
                                 </div>
                                 <Input
                                     name="password"
@@ -71,11 +65,11 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
                                     className="border-2 border-white/50"
                                     required />
                             </div>
-                            <Button type="submit" className="w-full">Login</Button>
+                            <Button type="submit" className="w-full">Sign up</Button>
                         </div>
                         <div className="mt-4 text-center text-sm">
-                            Don&apos;t have an account?{" "}
-                            <a href="/signup" className="underline underline-offset-4">Sign up</a>
+                            Already have an account?{" "}
+                            <a href="/login" className="underline underline-offset-4">Login</a>
                         </div>
                     </form>
                 </CardContent>
@@ -83,3 +77,5 @@ export function LoginForm({ className, onLoginSubmit, ...props }: LoginFormProps
         </div>
     )
 }
+
+export type { SignupData };
