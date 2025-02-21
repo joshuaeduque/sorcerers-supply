@@ -8,34 +8,44 @@ import Image from 'next/image';
 import { WandSparkles } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation";
-import { LoginData } from '@/types/login';
+import { LoginData } from '@/types/authType';
 
 export default function Login() {
+  // Toaster
   const { toast } = useToast();
+
+  // Use to Navigate after successful login
   const router = useRouter();
 
-  const handleLoginSubmit = (data: LoginData) => {
-    const email = data.email;
-    const password = data.password;
+  const handleLoginSubmit = async (data: LoginData) => {
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        toast({
-          title: "Login successful",
-          variant: "success",
-          description: "Welcome back!",
-        })
-
-        router.push('/');
-      })
-      .catch(error => {
-        console.error(error.message);
-        toast({
-          title: "Login failed",
-          variant: "destructive",
-          description: "Please check your email and password and try again.",
-        })
+    try {
+      const { email, password } = data;
+  
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  
+      toast({
+        title: "Login successful",
+        variant: "success",
+        description: "Welcome back!",
       });
+  
+      const token = await userCredential.user.getIdToken();
+  
+      // Store token in cookies
+      document.cookie = `token=${token}; path=/;`;
+  
+      router.push('/');
+
+    } catch (error) {
+      console.error(error);
+  
+      toast({
+        title: "Login failed",
+        variant: "destructive",
+        description: "Please check your email and password and try again.",
+      });
+    }
   };
 
   return (

@@ -13,7 +13,7 @@ import {
 
 import { FormEventHandler } from "react"
 
-import { LoginData } from '@/types/login'
+import { LoginData } from '@/types/authType'
 
 interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {
     onLoginSubmit: (data: LoginData) => void
