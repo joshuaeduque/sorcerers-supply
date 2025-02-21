@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils"
 
 import React from "react"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,13 +11,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
-// I think this is the right way to handle this in TypeScript?
-interface SignupData {
-    name: string,
-    email: string,
-    password: string
-}
+import { SignupData } from '@/types/authType'
 
 interface SignupFormProps extends React.ComponentPropsWithoutRef<'div'> {
     onSignupSubmit: (data: SignupData) => void
@@ -32,7 +25,6 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
         const formData = new FormData(event.currentTarget);
 
         const data : SignupData = {
-            name: formData.get('name') as string,
             email: formData.get('email') as string,
             password: formData.get('password') as string
         };
@@ -42,9 +34,9 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
-            <Card>
+            <Card className="bg-black/40 border-[1px] border-white/60">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Sign up</CardTitle>
+                    <CardTitle className="text-2xl self-center">Sign up</CardTitle>
                     <CardDescription>
                         Enter your information below to create your account
                     </CardDescription>
@@ -53,20 +45,12 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
-                                <Input
-                                    name="name"
-                                    id="name"
-                                    type="text"
-                                    placeholder="John Smith"
-                                    required />
-                            </div>
-                            <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
                                     name="email"
                                     id="email"
                                     type="email"
+                                    className="border-2 border-white/50"
                                     placeholder="m@example.com"
                                     required />
                             </div>
@@ -78,6 +62,7 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
                                     name="password"
                                     id="password"
                                     type="password"
+                                    className="border-2 border-white/50"
                                     required />
                             </div>
                             <Button type="submit" className="w-full">Sign up</Button>
