@@ -34,7 +34,7 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
-            <Card className="bg-black/40 border-[1px] border-white/60">
+            <Card className="bg-black/40 border-[1px] border-white/60 dark">
                 <CardHeader>
                     <CardTitle className="text-2xl self-center">Sign up</CardTitle>
                     <CardDescription>
