@@ -75,7 +75,18 @@ export default function Home() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Brands</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className='flex flex-col gap-2 m-1 mx-2 text-nowrap'>
+                <li><NavigationMenuLink>List of brands here</NavigationMenuLink></li>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
       </div>
       <div className="px-4 py-2">
         <p>Products</p>
