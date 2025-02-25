@@ -55,39 +55,6 @@ export default function Home() {
   return (
     <div>
       <SiteHeader authenticated={authenticated} onAuthClicked={() => { console.log('auth button clicked') }} />
-      <div className="px-4 py-1 border-b border-gray-800 flex justify-start">
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className='flex flex-col gap-2 m-1 mx-2 text-nowrap'>
-                <li><NavigationMenuLink>Creatures</NavigationMenuLink></li>
-                <li><NavigationMenuLink>Cursed Items</NavigationMenuLink></li>
-                <li><NavigationMenuLink>Ingredients</NavigationMenuLink></li>
-                <li><NavigationMenuLink>Magic Items</NavigationMenuLink></li>
-                <li><NavigationMenuLink>Scrolls</NavigationMenuLink></li>
-                <li><NavigationMenuLink>Spell Books</NavigationMenuLink></li>
-                <li><NavigationMenuLink>Staffs</NavigationMenuLink></li>
-                <li><NavigationMenuLink>Wands</NavigationMenuLink></li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Brands</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className='flex flex-col gap-2 m-1 mx-2 text-nowrap'>
-                <li><NavigationMenuLink>List of brands here</NavigationMenuLink></li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-      </div>
       <div className="px-4 py-2">
         <p>Products</p>
       </div>
