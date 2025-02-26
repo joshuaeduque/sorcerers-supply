@@ -51,7 +51,7 @@ export function SiteHeader({authenticated, onAuthClicked} : SiteHeaderProps) {
                                 <NavigationMenuTrigger>Brands</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <ul className='flex flex-col gap-2 m-1 mx-2 text-nowrap'>
-                                        <li><NavigationMenuLink>List of brands here</NavigationMenuLink></li>
+                                        <li><NavigationMenuLink>List of brands here</NavigationMenuLink></li> {/* TODO */}
                                     </ul>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
