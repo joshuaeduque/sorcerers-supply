@@ -17,7 +17,7 @@ async function getProductDocuments(): Promise<QueryDocumentSnapshot<DocumentData
 
         return allDocs;
     } catch (error) {
-       
+        console.error("Error fetching product documents:", error);
         return [];
     }
 }

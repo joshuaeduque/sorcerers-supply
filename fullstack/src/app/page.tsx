@@ -97,7 +97,7 @@ export default function Home() {
       <div className="px-4 py-2">
         <p>Products</p>
       </div>
-      <div className="px-4 flex flex-wrap gap-4">
+      <div className="p-[2rem] grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 place-items-center">
         {loadingProducts ? <LoadingSpinner/> : productDocuments.map((doc) => {
           const data = doc.data() as QueryDocumentSnapshot<ProductDocumentData>;
           return (
