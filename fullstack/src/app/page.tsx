@@ -59,12 +59,18 @@ export default function Home() {
     '/gettyimages-175543914-612x612.jpg',
     '/gettyimages-1186887201-612x612.jpg'
   ];
+  const categories = [
+    "Beginner",
+    "More Categories"
+  ];
 
   return (
     <div>
       <SiteHeader authenticated={authenticated} />
       <div className='flex justify-center'>
-        <Carousel className='w-full max-w-xl'>
+        <Carousel className='w-full max-w-xl' id="hero-carousel" opts={{
+          loop: true
+        }}>
           <CarouselContent>
             {images.map((value, index) => (
               <CarouselItem key={index}>
@@ -83,7 +89,25 @@ export default function Home() {
         </Carousel>
       </div>
       <div className="px-4 py-2">
-        <p>Products</p>
+        <h1>Collections</h1>
+      </div>
+      <Carousel className='w-md px-4'>
+        <CarouselContent>
+          {categories.map((value, index) => (
+            <CarouselItem className='basis-1/5' key={index}>
+              <Card className='h-36 flex'>
+                <CardContent>
+                  <p>{value}</p>
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselNext />
+        <CarouselPrevious />
+      </Carousel>
+      <div className="px-4 py-2">
+        <h1>All Products</h1>
       </div>
       <div className="px-4 flex flex-wrap gap-4">
         {loadingProducts ? <LoadingSpinner /> : productDocuments.map((doc) => {
