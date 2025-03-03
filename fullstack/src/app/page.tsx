@@ -64,13 +64,13 @@ export default function Home() {
     <div>
       <SiteHeader authenticated={authenticated} />
       <div className='flex justify-center'>
-        <Carousel className='w-full max-w-xs'>
+        <Carousel className='w-full max-w-xl'>
           <CarouselContent>
             {images.map((value, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
                   <Card>
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                    <CardContent className="flex items-center justify-center">
                       <img src={value} />
                     </CardContent>
                   </Card>
