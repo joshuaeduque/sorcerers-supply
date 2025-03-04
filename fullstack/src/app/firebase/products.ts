@@ -3,7 +3,6 @@ import { collection, DocumentData, getDocs, QueryDocumentSnapshot,query,limit } 
 
 const collectionNames = ["wands","spellBooks","staffs","scrolls","magicItems","ingredients","cursedItems","creatures"];
 
-
 async function getProductDocuments(): Promise<QueryDocumentSnapshot<DocumentData>[]> {
     try {
         let allDocs: QueryDocumentSnapshot<DocumentData>[] = [];
