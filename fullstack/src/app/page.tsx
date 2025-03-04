@@ -11,45 +11,77 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { auth } from '@/app/firebase/config';
-import { getProductDocuments } from '@/app/firebase/products';
-
-import { ProductDocumentData } from "@/types/product-document-data";
-
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import { getProducts, Product } from '@/app/firebase/products';
+import { useToast } from '@/hooks/use-toast';
 
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
+import { getAuth, signOut } from "firebase/auth";
 
 export default function Home() {
 
+  const { toast } = useToast();
+  const router = useRouter();
+
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
-  const [loadingProducts, setLoadingProducts] = useState(false);
-  const [productDocuments, setProductDocuments] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
     // Get Firebase authentication
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        setAuthenticated(true);
-      }
-      else {
-        setAuthenticated(false);
-      }
+      setAuthenticated(user ? true : false);
     });
 
     // Get products from Firestore
-    setLoadingProducts(true);
-    getProductDocuments()
-      .then(docs => {
-        setProductDocuments(docs);
-        setLoadingProducts(false);
-      });
+    getProducts()
+      .then(products => setProducts(products))
+      .catch(_ => {setError(true)})
+      .finally(() => { setLoading(false) });
 
+    // Clean up auth callback
     return () => { unsubscribe() }
   }, []);
 
+  const handleAuthClicked = async () => {
+    const auth = getAuth();
+
+    // Check for authentication status
+    if (!authenticated) {
+      // User isn't logged in, go to login page
+      router.push('/login');
+
+      return;
+    }
+    else {
+      // User is logged in, try signing out
+      try {
+        await signOut(auth);
+
+        toast({
+          title: "Signed out",
+          variant: "success",
+          description: "You have been signed out.",
+        });
+
+        router.push('/');
+      }
+      catch (error) {
+        console.error(error);
+
+        toast({
+          title: "Sign out failed",
+          variant: "destructive",
+          description: "Please try again.",
+        });
+      }
+    }
+  };
+
   return (
     <div>
-      <SiteHeader authenticated={authenticated} onAuthClicked={() => { console.log('auth button clicked') }} />
+      <SiteHeader authenticated={authenticated} onAuthClicked={handleAuthClicked} />
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
         <DropdownMenu >
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
@@ -59,20 +91,18 @@ export default function Home() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="px-4 py-2">
+
+      <div className='m-4'>
         <p>Products</p>
-      </div>
-      <div className="px-4 flex flex-wrap gap-4">
-        {loadingProducts ? <LoadingSpinner/> : productDocuments.map((doc) => {
-          const data = doc.data() as ProductDocumentData;
-          return (
-            <ProductCard
-              key={doc.id}
-              name={data.name}
-              price={'$' + (data.cents / 100)}
-            />
-          );
-        })}
+
+        {loading && <LoadingSpinner />}
+        {error && <p>There was an error loading the products</p>}
+        {!loading && !error && products &&
+          <div className='my-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 place-items-center'>
+            {products.map(product => (
+              <ProductCard key={product.id} name={product.name} price={product.price} imageSrc={product.imageSrc} />
+            ))}
+          </div>}
       </div>
     </div>
   );
