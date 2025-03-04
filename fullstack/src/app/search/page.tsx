@@ -25,7 +25,7 @@ export default function Search() {
 
     return (
         <div>
-            <SiteHeader />
+            <SiteHeader onSearchClicked={_=>{console.log('search clicked')}} />
             <div className="m-4">
                 {loading && <div>Loading...</div>}
                 {error && <div>An error occured</div>}
