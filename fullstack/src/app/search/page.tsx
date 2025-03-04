@@ -5,17 +5,16 @@ import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader/site-header";
 import { ProductCard } from "@/components/ProductCard/product-card";
 
-import { DocSnapshotArray } from "../firebase/config";
-import { getProductDocuments } from "../firebase/products";
+import { getProductDocuments, getProducts, Product } from "../firebase/products";
 
 export default function Search() {
 
-    const [products, setProducts] = useState<DocSnapshotArray | undefined>(undefined);
+    const [products, setProducts] = useState<Product[] | undefined>(undefined);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        getProductDocuments().then(products => {
+        getProducts().then(products => {
             setProducts(products)
         }).catch(_ => {
             setError(true);
@@ -34,7 +33,7 @@ export default function Search() {
                     <div>
                         <p>Products</p>
                         <div className="flex flex-wrap gap-4">
-                            {products.map(product => { return <ProductCard key={product.id} name={""} price={99} /> })}
+                            {products.map(product => { return <ProductCard key={product.id} name={product.name} price={product.price} imageSrc={product.imageSrc} /> })}
                         </div>
                     </div>
                 }
