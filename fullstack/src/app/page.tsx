@@ -11,68 +11,65 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { auth } from '@/app/firebase/config';
-import { getAuth, signOut } from "firebase/auth";
-import { getProductDocuments } from '@/app/firebase/products';
-
-import { ProductDocumentData } from "@/types/product-document-data";
-
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
-
-import { useEffect, useState } from "react";
-
+import { getProducts, Product } from '@/app/firebase/products';
 import { useToast } from '@/hooks/use-toast';
 
+import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
+import { getAuth, signOut } from "firebase/auth";
 
 export default function Home() {
 
-  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
-  const [loadingProducts, setLoadingProducts] = useState(false);
-  const [productDocuments, setProductDocuments] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[]>([]);
   const { toast } = useToast();
-  const router = useRouter(); 
+  const router = useRouter();
+
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
     // Get Firebase authentication
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        setAuthenticated(true);
-      }
-      else {
-        setAuthenticated(false);
-      }
+      setAuthenticated(user ? true : false);
     });
 
     // Get products from Firestore
-    setLoadingProducts(true);
+    getProducts()
+      .then(products => setProducts(products))
+      .catch(_ => {setError(true)})
+      .finally(() => { setLoading(false) });
 
-    getProductDocuments()
-      .then(docs => {
-        setProductDocuments(docs);
-        setLoadingProducts(false);
-      });
-
+    // Clean up auth callback
     return () => { unsubscribe() }
   }, []);
 
-  const handleClick = async () => {
+  const handleAuthClicked = async () => {
     const auth = getAuth();
 
+    // Check for authentication status
     if (!authenticated) {
+      // User isn't logged in, go to login page
       router.push('/login');
+
       return;
     }
     else {
+      // User is logged in, try signing out
       try {
         await signOut(auth);
+
         toast({
           title: "Signed out",
           variant: "success",
           description: "You have been signed out.",
         });
+
         router.push('/');
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error);
+
         toast({
           title: "Sign out failed",
           variant: "destructive",
@@ -84,7 +81,7 @@ export default function Home() {
 
   return (
     <div>
-      <SiteHeader authenticated={authenticated} onAuthClicked={handleClick} />
+      <SiteHeader authenticated={authenticated} onAuthClicked={handleAuthClicked} />
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
         <DropdownMenu >
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
@@ -94,21 +91,18 @@ export default function Home() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="px-4 py-2">
+
+      <div className='m-4'>
         <p>Products</p>
-      </div>
-      <div className="p-[2rem] grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 place-items-center">
-        {loadingProducts ? <LoadingSpinner/> : productDocuments.map((doc) => {
-          const data = doc.data() as QueryDocumentSnapshot<ProductDocumentData>;
-          return (
-            <ProductCard
-            key={doc.id}
-            name={doc.data().name}
-            price={ doc.data().price }
-            imageSrc={ doc.data().imageSrc }
-            />
-          );
-        })}
+
+        {loading && <LoadingSpinner />}
+        {error && <p>There was an error loading the products</p>}
+        {!loading && !error && products &&
+          <div className='my-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 place-items-center'>
+            {products.map(product => (
+              <ProductCard key={product.id} name={product.name} price={product.price} imageSrc={product.imageSrc} />
+            ))}
+          </div>}
       </div>
     </div>
   );
