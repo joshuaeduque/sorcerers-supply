@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader/site-header";
 import { ProductCard } from "@/components/ProductCard/product-card";
 
-import { getProductDocuments, getProducts, Product } from "../firebase/products";
+import { getProducts, Product } from "../firebase/products";
 
 export default function Search() {
 

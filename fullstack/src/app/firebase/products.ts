@@ -5,9 +5,9 @@ const collectionNames = ["wands", "spellBooks", "staffs", "scrolls", "magicItems
 
 interface Product {
     id: string,
-    imageSrc?: string,
-    name?: string,
-    price?: number
+    imageSrc: string,
+    name: string,
+    price: number
 };
 
 async function getProducts(): Promise<Product[]> {
