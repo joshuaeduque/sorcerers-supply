@@ -13,7 +13,7 @@ const appOptions: FirebaseOptions = {
 };
 
 const app: FirebaseApp = initializeApp(appOptions);
-const db: Firestore = getFirestore();
+const db: Firestore = getFirestore(app);
 const auth: Auth = getAuth(app);
 
 export { app, db, auth };
