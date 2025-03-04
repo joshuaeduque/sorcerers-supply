@@ -1,6 +1,8 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
 import { Auth, getAuth } from 'firebase/auth';
-import { Firestore, getFirestore } from 'firebase/firestore';
+import { DocumentData, Firestore, getFirestore, QueryDocumentSnapshot } from 'firebase/firestore';
+
+type DocSnapshotArray = QueryDocumentSnapshot<DocumentData, DocumentData>[];
 
 const appOptions: FirebaseOptions = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -17,3 +19,4 @@ const db: Firestore = getFirestore(app);
 const auth: Auth = getAuth(app);
 
 export { app, db, auth };
+export type { DocSnapshotArray };

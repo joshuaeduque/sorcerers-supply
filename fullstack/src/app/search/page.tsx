@@ -1,14 +1,16 @@
 'use client';
 
-import { SiteHeader } from "@/components/SiteHeader/site-header";
 import { useEffect, useState } from "react";
-import { getProductDocuments } from "../firebase/products";
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+
+import { SiteHeader } from "@/components/SiteHeader/site-header";
 import { ProductCard } from "@/components/ProductCard/product-card";
+
+import { DocSnapshotArray } from "../firebase/config";
+import { getProductDocuments } from "../firebase/products";
 
 export default function Search() {
 
-    const [products, setProducts] = useState<QueryDocumentSnapshot<DocumentData, DocumentData>[] | undefined>(undefined);
+    const [products, setProducts] = useState<DocSnapshotArray | undefined>(undefined);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
