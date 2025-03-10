@@ -9,7 +9,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
 import { auth } from '@/app/firebase/config';
 import { getAuth, signOut } from "firebase/auth";
 import { getProductDocuments } from '@/app/firebase/products';
@@ -86,9 +85,9 @@ export default function Home() {
     <div>
       <SiteHeader authenticated={authenticated} onAuthClicked={handleClick} />
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
-        <DropdownMenu >
+        <DropdownMenu>
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
-          <DropdownMenuContent className='dark'>
+          <DropdownMenuContent className="dark">
             <DropdownMenuItem>Price: Low to High</DropdownMenuItem>
             <DropdownMenuItem>Price: High to Low</DropdownMenuItem>
           </DropdownMenuContent>
@@ -98,18 +97,29 @@ export default function Home() {
         <p>Products</p>
       </div>
       <div className="p-[2rem] grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 place-items-center">
-        {loadingProducts ? <LoadingSpinner/> : productDocuments.map((doc) => {
-          const data = doc.data() as QueryDocumentSnapshot<ProductDocumentData>;
-          return (
-            <ProductCard
-            key={doc.id}
-            name={doc.data().name}
-            price={ doc.data().price }
-            imageSrc={ doc.data().imageSrc }
-            />
-          );
-        })}
+        {loadingProducts ? (
+          <LoadingSpinner />
+        ) : (
+          productDocuments.map((doc) => {
+            const data = doc.data();
+            return (
+              <div
+                key={doc.id}
+                onClick={() =>
+                  router.push(`/productPage/${data.collectionName}/${doc.id}`)
+                }
+                style={{ cursor: "pointer" }}
+              >
+                <ProductCard
+                  name={data.name}
+                  price={data.price}
+                  imageSrc={data.imageSrc}
+                />
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
-  );
+  );  
 }
