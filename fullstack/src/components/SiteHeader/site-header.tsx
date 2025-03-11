@@ -8,10 +8,11 @@ import Link from 'next/link';
 interface SiteHeaderProps {
     authenticated?: boolean | null,
     onAuthClicked?: MouseEventHandler<HTMLButtonElement>,
-    onSearchClicked?: MouseEventHandler<HTMLButtonElement>
+    onSearchClicked?: MouseEventHandler<HTMLButtonElement>,
+    onCartClicked?: MouseEventHandler<HTMLButtonElement>
 }
 
-export function SiteHeader({authenticated, onAuthClicked, onSearchClicked} : SiteHeaderProps) {
+export function SiteHeader({authenticated, onAuthClicked, onSearchClicked, onCartClicked} : SiteHeaderProps) {
     return (
         <div className="flex p-4 border-b border-gray-800">
             <div className="flex items-center gap-2">
@@ -28,7 +29,7 @@ export function SiteHeader({authenticated, onAuthClicked, onSearchClicked} : Sit
                 <Button onClick={onAuthClicked}>
                     {authenticated === null ? '...' : authenticated ? 'Sign out' : 'Log in'}
                 </Button>
-                <Button>
+                <Button onClick={onCartClicked}>
                     <ShoppingCart/> Cart
                 </Button>
             </div>

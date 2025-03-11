@@ -17,6 +17,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { getAuth, signOut } from "firebase/auth";
+import { CartSheet } from '@/components/CartSheet/cart-sheet';
 
 export default function Home() {
 
@@ -27,6 +28,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [products, setProducts] = useState<Product[]>();
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     // Get Firebase authentication
@@ -37,7 +39,7 @@ export default function Home() {
     // Get products from Firestore
     getProducts()
       .then(products => setProducts(products))
-      .catch(_ => {setError(true)})
+      .catch(_ => { setError(true) })
       .finally(() => { setLoading(false) });
 
     // Clean up auth callback
@@ -79,9 +81,13 @@ export default function Home() {
     }
   };
 
+  const handleCartClicked = () => {
+    setCartOpen(true);
+  };
+
   return (
     <div>
-      <SiteHeader authenticated={authenticated} onAuthClicked={handleAuthClicked} />
+      <SiteHeader authenticated={authenticated} onAuthClicked={handleAuthClicked} onCartClicked={handleCartClicked} />
       <div className="px-4 py-1 border-b border-gray-800 flex justify-end">
         <DropdownMenu >
           <DropdownMenuTrigger>Sort by</DropdownMenuTrigger>
@@ -104,6 +110,8 @@ export default function Home() {
             ))}
           </div>}
       </div>
+
+      <CartSheet onOpenChange={setCartOpen} open={cartOpen} />
     </div>
   );
 }
