@@ -14,12 +14,14 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination"
 import { getProducts, Product } from "../../lib/firebase/products";
+import { CartSheet } from "@/components/CartSheet/cart-sheet";
 
 export default function Search() {
 
     const [products, setProducts] = useState<Product[] | undefined>(undefined);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [cartOpen, setCartOpen] = useState(false);
 
     useEffect(() => {
         getProducts().then(products => {
@@ -31,9 +33,13 @@ export default function Search() {
         });
     }, []);
 
+    const handleCartClicked = () => {
+        setCartOpen(true);
+    };
+
     return (
         <div>
-            <SiteHeader onSearchClicked={_ => { console.log('search clicked') }} />
+            <SiteHeader onCartClicked={handleCartClicked} onSearchClicked={_ => { console.log('search clicked') }} />
             <div className="m-4">
                 {loading && <LoadingSpinner />}
                 {error && <div>An error occured</div>}
@@ -70,6 +76,7 @@ export default function Search() {
                     </div>
                 }
             </div>
+            <CartSheet open={cartOpen} onOpenChange={setCartOpen}/>
         </div>
     );
 }
