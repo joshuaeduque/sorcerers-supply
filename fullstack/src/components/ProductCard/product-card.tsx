@@ -4,7 +4,6 @@ import {
     CardFooter,
 } from "@/components/ui/card"
 
-
 interface ProductCardProps {
     key?: string,
     name?: string,

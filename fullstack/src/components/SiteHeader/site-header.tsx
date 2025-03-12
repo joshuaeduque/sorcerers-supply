@@ -1,9 +1,8 @@
+import Link from 'next/link';
+import { MouseEventHandler } from 'react';
+import { ShoppingCart, Search, WandSparkles } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
-import { ShoppingCart, Search, WandSparkles } from 'lucide-react';
-import { MouseEventHandler } from 'react';
-import Link from 'next/link';
 
 interface SiteHeaderProps {
     authenticated?: boolean | null,

@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { WandSparkles } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation";
-import { LoginData } from '@/types/authType';
+import { LoginData } from '@/types/authentication';
 
 export default function Login() {
   // Toaster

@@ -11,7 +11,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { SignupData } from '@/types/authType'
+import { SignupData } from '@/types/authentication'
 
 interface SignupFormProps extends React.ComponentPropsWithoutRef<'div'> {
     onSignupSubmit: (data: SignupData) => void
@@ -77,5 +77,3 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
         </div>
     )
 }
-
-export type { SignupData };

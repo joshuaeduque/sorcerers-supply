@@ -1,18 +1,13 @@
+import React from "react";
+import { ChevronLeft, ChevronRight, ShoppingBasket } from "lucide-react";
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
     SheetHeader,
     SheetTitle,
-    SheetTrigger,
 } from "@/components/ui/sheet"
 import { DialogProps } from "@radix-ui/react-dialog";
-import { CartCard } from "../CartCard/cart-card";
-import { ProductCard } from "../ProductCard/product-card";
-import { ChevronLeft, ChevronRight, ShoppingBasket } from "lucide-react";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import React from "react";
 
 interface CartProduct {
     name: string,
