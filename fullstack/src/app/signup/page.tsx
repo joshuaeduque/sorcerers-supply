@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { WandSparkles } from 'lucide-react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/app/firebase/config';
+import { auth } from '@/lib/firebase/config';
 import { useToast } from "@/hooks/use-toast"
 import { SignupData } from '@/types/authentication';
 import { SignupForm } from '@/components/SignupForm/signup-form'

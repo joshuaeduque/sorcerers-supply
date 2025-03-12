@@ -13,7 +13,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-import { getProducts, Product } from "../firebase/products";
+import { getProducts, Product } from "../../lib/firebase/products";
 
 export default function Search() {
 

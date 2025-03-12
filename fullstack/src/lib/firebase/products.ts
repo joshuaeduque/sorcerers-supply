@@ -1,4 +1,4 @@
-import { db } from '@/app/firebase/config'
+import { db } from '@/lib/firebase/config'
 import { collection, DocumentData, getDocs, QueryDocumentSnapshot, query, limit } from 'firebase/firestore'
 
 const collectionNames = ["wands", "spellBooks", "staffs", "scrolls", "magicItems", "ingredients", "cursedItems", "creatures"];
