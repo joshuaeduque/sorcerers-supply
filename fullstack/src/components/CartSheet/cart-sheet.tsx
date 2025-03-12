@@ -55,7 +55,7 @@ export function CartSheet({ ...rest }: DialogProps) {
                         ))}
                     </div>
                     <div className="flex justify-center">
-                        <Button className="w-full"><ShoppingBasket />Checkout</Button>
+                        <Button className="dark w-full"><ShoppingBasket />Checkout</Button>
                     </div>
                 </div>
             </SheetContent>
