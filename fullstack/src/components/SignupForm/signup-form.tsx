@@ -1,5 +1,6 @@
-
 import React from "react"
+import { cn } from "@/lib/utils"
+import { SignupData } from '@/types/authentication'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,8 +11,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
-import { SignupData } from '@/types/authentication'
+
 
 interface SignupFormProps extends React.ComponentPropsWithoutRef<'div'> {
     onSignupSubmit: (data: SignupData) => void

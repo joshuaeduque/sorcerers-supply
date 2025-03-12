@@ -1,3 +1,4 @@
+import { FormEventHandler } from "react"
 import { LoginData } from '@/types/authentication'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -10,7 +11,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { FormEventHandler } from "react"
 
 interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {
     onLoginSubmit: (data: LoginData) => void

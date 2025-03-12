@@ -1,14 +1,14 @@
 "use client";
 
-import { SignupForm, SignupData } from '@/components/SignupForm/signup-form'
-
-import { auth } from '@/app/firebase/config';
-import background from '../../assets/background/login.png';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import Image from 'next/image';
-import { WandSparkles } from 'lucide-react';
-import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation";
+import { WandSparkles } from 'lucide-react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/app/firebase/config';
+import { useToast } from "@/hooks/use-toast"
+import { SignupData } from '@/types/authentication';
+import { SignupForm } from '@/components/SignupForm/signup-form'
+import background from '../../assets/background/login.png';
 
 export default function Signup() {
 
