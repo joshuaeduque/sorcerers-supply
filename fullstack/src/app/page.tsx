@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { getAuth, signOut } from "firebase/auth";
-import { auth } from '@/app/firebase/config';
-import { getProducts, Product } from '@/app/firebase/products';
+import { auth } from '@/lib/firebase/config';
+import { getProducts, Product } from '@/lib/firebase/products';
 import { useToast } from '@/hooks/use-toast';
 import { LoadingSpinner } from '@/components/ui/spinner';
 import { SiteHeader } from "@/components/SiteHeader/site-header";
