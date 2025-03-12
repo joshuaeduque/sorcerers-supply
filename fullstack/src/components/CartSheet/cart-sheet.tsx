@@ -12,6 +12,7 @@ import { ProductCard } from "../ProductCard/product-card";
 import { ChevronLeft, ChevronRight, ShoppingBasket } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import React from "react";
 
 interface CartProduct {
     name: string,
@@ -38,7 +39,7 @@ export function CartSheet({ ...rest }: DialogProps) {
                         <p className="font-bold">Price</p>
                         <p className="font-bold">Quantity</p>
                         {cartProducts.map((product, i) => (
-                            <>
+                            <React.Fragment key={i}>
                                 <div className="flex items-center gap-2">
                                     <img className="aspect-square w-12 invert" src="/next.svg" />
                                     <p>{product.name}</p>
@@ -51,7 +52,7 @@ export function CartSheet({ ...rest }: DialogProps) {
                                     <p>{product.quantity}</p>
                                     <Button variant="outline" size="icon"><ChevronRight /></Button>
                                 </div>
-                            </>
+                            </React.Fragment>
                         ))}
                     </div>
                     <div className="flex justify-center">
