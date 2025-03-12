@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader/site-header";
 import { ProductCard } from "@/components/ProductCard/product-card";
 import { LoadingSpinner } from "@/components/ui/spinner";
+import { CartSheet } from "@/components/CartSheet/cart-sheet";
 import {
     Pagination,
     PaginationContent,
@@ -14,7 +15,6 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination"
 import { getProducts, Product } from "../../lib/firebase/products";
-import { CartSheet } from "@/components/CartSheet/cart-sheet";
 
 export default function Search() {
 
