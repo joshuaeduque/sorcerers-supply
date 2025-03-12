@@ -1,16 +1,13 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+interface CartCardProps {
+    name: string,
+    price: number,
+    quantity: number
+}
 
-export function CartCard() {
+export function CartCard({ name, price, quantity }: CartCardProps) {
     return (
-        <Card>
-            
-        </Card>
+        <div className="flex ">
+
+        </div>
     );
 }
