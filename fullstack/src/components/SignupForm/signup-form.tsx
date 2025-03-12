@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils"
 
 import React from "react"
 import { Button } from "@/components/ui/button"
@@ -11,6 +10,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 import { SignupData } from '@/types/authentication'
 
 interface SignupFormProps extends React.ComponentPropsWithoutRef<'div'> {
