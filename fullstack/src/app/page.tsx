@@ -1,23 +1,21 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
+import { getAuth, signOut } from "firebase/auth";
+import { auth } from '@/app/firebase/config';
+import { getProducts, Product } from '@/app/firebase/products';
+import { useToast } from '@/hooks/use-toast';
 import { LoadingSpinner } from '@/components/ui/spinner';
 import { SiteHeader } from "@/components/SiteHeader/site-header";
 import { ProductCard } from "@/components/ProductCard/product-card";
+import { CartSheet } from '@/components/CartSheet/cart-sheet';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
-import { auth } from '@/app/firebase/config';
-import { getProducts, Product } from '@/app/firebase/products';
-import { useToast } from '@/hooks/use-toast';
-
-import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
-import { getAuth, signOut } from "firebase/auth";
-import { CartSheet } from '@/components/CartSheet/cart-sheet';
 
 export default function Home() {
 

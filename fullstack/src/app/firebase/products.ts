@@ -39,4 +39,5 @@ async function getProductDocuments(): Promise<QueryDocumentSnapshot<DocumentData
 }
 
 export { getProductDocuments, getProducts };
+
 export type { Product };

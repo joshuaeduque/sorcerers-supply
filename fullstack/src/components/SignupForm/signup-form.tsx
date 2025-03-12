@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils"
-
 import React from "react"
+import { cn } from "@/lib/utils"
+import { SignupData } from '@/types/authentication'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -11,7 +11,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { SignupData } from '@/types/authType'
+
 
 interface SignupFormProps extends React.ComponentPropsWithoutRef<'div'> {
     onSignupSubmit: (data: SignupData) => void
@@ -77,5 +77,3 @@ export function SignupForm({ className, onSignupSubmit, ...props }: SignupFormPr
         </div>
     )
 }
-
-export type { SignupData };

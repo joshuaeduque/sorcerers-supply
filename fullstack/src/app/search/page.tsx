@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from "react";
-
 import { SiteHeader } from "@/components/SiteHeader/site-header";
 import { ProductCard } from "@/components/ProductCard/product-card";
 import { LoadingSpinner } from "@/components/ui/spinner";
@@ -14,7 +13,6 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-
 import { getProducts, Product } from "../firebase/products";
 
 export default function Search() {
